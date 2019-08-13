@@ -1,1 +1,3 @@
-webbrowser
+selenium
+webdriver_manager
+tkinter
