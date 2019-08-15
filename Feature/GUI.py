@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog
+from Feature import LinkedInEasyApply
 
 
-class MyGUI:
+class GUI:
 
     def __init__(self, master):
         self.master = master
@@ -112,7 +113,8 @@ class MyGUI:
         self.resume_button.grid(row=10, column=2, sticky=tk.N + tk.S + tk.E + tk.W, padx=5, pady=5)
 
     def _create_submit_button_component(self):
-        self.submit_button = HoverButton(self.frame, text="Submit", activebackground='lightgrey', command=self.apply)
+        self.submit_button = HoverButton(self.frame, text="Submit", activebackground='lightgrey', command=self.apply,
+                                         state=tk.DISABLED)
         self.submit_button.grid(row=12, column=0, columnspan=2, sticky=tk.N + tk.S + tk.E + tk.W, padx=5, pady=5)
 
     def askopenfileResume(self):
@@ -152,7 +154,19 @@ class MyGUI:
             self.submit_button.config(state='disabled')
 
     def apply(self):
-        pass
+        print('in apply function')
+        linkedin_easy_apply_obj = LinkedInEasyApply.LinkedInEasyApply(email_address=self.email_address_var.get(),
+                                                                      email_password=self.email_password_var.get(),
+                                                                      linkedin_username=self.linkedin_username_var.get(),
+                                                                      linkedin_password=self.linkedin_password_var.get(),
+                                                                      desired_job_title=self.desired_job_title_var.get(),
+                                                                      city=self.location_city_var.get(),
+                                                                      state=self.location_state_var.get(),
+                                                                      phone_number=self.phone_number_var.get(),
+                                                                      page_limit=self.page_limit_var.get(),
+                                                                      resume_path=self.resume_path_var.get())
+        linkedin_easy_apply_obj.login()
+        linkedin_easy_apply_obj.search_for_jobs()
 
 
 class HoverButton(tk.Button):

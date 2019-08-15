@@ -1,4 +1,4 @@
-import GUI
+from Feature import GUI
 import tkinter as tk
 
 if __name__ == '__main__':
@@ -10,5 +10,5 @@ if __name__ == '__main__':
     x = (ws / 2) - (w / 2)
     y = (hs / 2) - (h / 2)
     root.geometry('+%d+%d' % (x, y))
-    my_gui = GUI.MyGUI(root)
+    my_gui = GUI.GUI(root)
     root.mainloop()
