@@ -156,16 +156,16 @@ class GUI:
             self.submit_button.config(state='disabled')
 
     def apply(self):
-        linkedin_easy_apply_obj = LinkedInEasyApply.LinkedInEasyApply(email_address="self.email_address_var.get()",
-                                                                      email_password="self.email_password_var.get()",
-                                                                      linkedin_username="jenil.desai25@gmail.com",
-                                                                      linkedin_password="jenildesai25",
-                                                                      desired_job_title="software developer",
-                                                                      city="san jose",
-                                                                      state="california",
-                                                                      phone_number="1542142",
-                                                                      page_limit="10",
-                                                                      resume_path="resume")
+        linkedin_easy_apply_obj = LinkedInEasyApply.LinkedInEasyApply(email_address=self.email_address_var.get(),
+                                                                      email_password=self.email_password_var.get(),
+                                                                      linkedin_username=self.linkedin_username_var.get(),
+                                                                      linkedin_password=self.linkedin_password_var.get(),
+                                                                      desired_job_title=self.desired_job_title_var.get(),
+                                                                      city=self.location_city_var.get(),
+                                                                      state=self.location_state_var.get(),
+                                                                      phone_number=self.phone_number_var.get(),
+                                                                      page_limit=self.page_limit_var.get(),
+                                                                      resume_path=self.resume_path_var.get())
         linkedin_easy_apply_obj.login()
         linkedin_easy_apply_obj.search_for_jobs()
 
