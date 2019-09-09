@@ -108,10 +108,10 @@ class LinkedInEasyApply:
                 for page in self.page_limit:
                     print('page no.{}'.format(page))
                     pane = self.driver.find_element_by_class_name("jobs-search-results")
-                    ul_tag_data = self.driver.find_element_by_xpath(
-                        "//div//ul[@class='jobs-search-results__list artdeco-list']")
+                    # ul_tag_data = self.driver.find_element_by_xpath(
+                    #     "//div//ul[@class='jobs-search-results__list artdeco-list']")
                     all_li = pane.find_elements_by_tag_name("li")
-                    all_ul_li = ul_tag_data.find_elements_by_tag_name("li")
+                    # all_ul_li = ul_tag_data.find_elements_by_tag_name("li")
                     for li in all_li:
                         try:
                             # get link to apply
@@ -167,6 +167,7 @@ class LinkedInEasyApply:
 
         # Set init status
         status = False
+        # TODO still need to implement code if there are more pages and needs to configure.
 
         # Look for easy apply button
         try:
@@ -189,6 +190,8 @@ class LinkedInEasyApply:
         self.driver.close()
         self.driver.switch_to.window(current_window)
 
+        [self.driver.close() for window in self.driver.window_handles if window != current_window]
+
         return status
 
     def answer_form_1(self):
@@ -196,6 +199,7 @@ class LinkedInEasyApply:
             # Here we need to account for different application windows
             time.sleep(1)
             try:
+                # req_info = self.driver.find_element_by_id('ember687')
                 phone_input = WebDriverWait(self.driver, 3).until(
                     ec.presence_of_element_located((By.ID, 'apply-form-phone-input')))
                 phone_input.clear()
